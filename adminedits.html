@@ -1,0 +1,1151 @@
+
+<html>
+<head>
+<title>Admin Edits </title>
+<meta charset="utf-8">
+<script src="static/js/others/adminedits.js" ></script>
+<script src="static/js/others/main.js" ></script>
+<link rel="stylesheet" type="text/css" href="static/css/main.css" >
+<link rel="stylesheet" type="text/css" href="static/css/w3.css">
+</head>
+<body class="main_body" onload=" Hide_all_Admin_Divs ()">
+<div id="main-header">
+        <div  id= "Navigetion" class="header">
+                <!-- ======= CLOSE ====== -->
+            <span href="javascript:void(0)" class="closebtn" onclick="closeNavi()"><label class="close-navi-span"> &times;</label></span><!-- closs the navi -->
+            <div id="our-avenues-menu-label-div">
+                <label class="our-avenues-label" onclick="Load_index ()" > Home</label>
+            </div><br>
+                <div id="our-avenues-menu-label-div">
+                    <label class="our-avenues-label" > Our Avenues</label>
+                </div><br>
+                <div id="menu-items-div">
+                    <center>
+                        <a><label onclick="Load_food_view ()">Food</label></a>
+                        <a><label onclick="Load_chips_view ()">Chips</label></a>
+                        <a><label onclick="Load_piloa_view ()">Piloa</label></a>
+                        <a><label onclick="Load_drinks_view ()">Drinks</label></a>
+                        <a><label onclick="Load_salads_view ()">Salads</label></a>
+                        <a><label onclick="Load_chicken_view ()">Chicken</label></a>
+                        <a><label onclick="Load_luwombo_view ()">Luwombo</label></a>
+                        <a><label onclick="Load_local_dish_view ()">Local Dish</label></a>
+                        <a><label onclick="Load_break_fast_view ()">Break Fast</label></a>
+                        <a><label onclick="Load_beverages_view_ ()">Beverages</label></a>
+                        <a><label onclick="Load_goat_meat_view ()">Goat's Meat</label></a>
+                        <a><label onclick="Load_beef_liver_view ()">Beef / Liver</label></a>
+                    </center>
+                </div>
+                <br>
+                <div id="our-avenues-menu-label-div">
+                    <label class="our-avenues-label" onclick="Load_developer ()" > Developer</label>
+                </div><br>
+        </div>
+        <div id="NaviDiv">
+            <label class="kone-menu-label" onclick="openMenus()">&#9776;</label>
+            <label class="kone-label">"Taste the difference"</label>
+        </div>
+<script>
+function openMenus(){document.getElementById("Navigetion").style.width = "240px"}
+function closeNavi (){document.getElementById("Navigetion").style.width = "0"}
+</script>
+
+</div> <!-- main-header-->
+<div id="main-body" > <!-- Begin main-body div -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <br><br>
+    <center><button class="menu_btns fontstyles" onclick="Show_staffs_panel_div ()"> Staffs</button></center>
+    <div id="staffs-panel-div"><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_staffs_add_div_id ()"> Add</button></center>
+        <div id="staffs-add-div-id">
+            <center><br>
+                <button class=" cancle-btn" onclick="document.getElementById('id01').style.display='block'">
+                        New
+                    </button>
+            </center>
+                <!-- Adding staff -->
+            <div id="id01" class="w3-modal">
+                <div class="w3-modal-content w3-animate-top w3-card-4">
+                    <header class="w3-container w3-teal">
+                        <span onclick="document.getElementById('id01').style.display='none'"
+                        class="w3-button w3-display-topright">&times;</span>
+                        <h2>Adding staff ..</h2>
+                    </header>
+                    <div class="w3-container">
+                        <center><br>
+                            <form action="http://192.168.43.140:6060/create_new_staff" method="POST">
+                                <label for="uname"><b>Staff Name</label><br>
+                                <input required type="text" placeholder="Staff name" name="name" autocomplete="off" class="form_input" required><br><br>
+
+                                <label><b>Staff PIN</label><br>
+                                <input required type="password" placeholder="Password" name="staff_pin" autocomplete="off" class="form_input" required><br>
+
+                                <label>Password</label>
+                                <input required class="form_input" placeholder="Admin PIN" name="pwd" autocomplete="off" type="password"><br>
+
+                                <button type="submit" class="submit-btn" > Done</button><br>
+                            </form><br>
+                            <button type="button" class=" close-btn" onclick="document.getElementById('id01').style.display='none'">Cancel</button>
+                        </center>
+                    </div>
+                    </div>
+                </div>
+        </div><br>
+
+        <center><button class="admin-btn fontstyles" onclick="Show_staffs_delete_div_id ()"> Delete</button></center>
+        <div id="staffs-delete-div-id"><br>
+                <button onclick="Fetch_All_Staffs ('all_staffs_endpoint','staff-delete-tbody','staff-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button>
+                <div id="staff-delete-tbody-div">
+                        <table class=" w3-bordered user-scrolling-table-admin">
+                            <center><tbody id="staff-delete-tbody"></tbody></center>
+                        </table>
+                </div>
+
+            <center><br>
+            <button class="cancle-btn" onclick="document.getElementById('id02').style.display='block'">Delete</button></center>
+            <!-- Deleting item -->
+    <div id="id02" class="w3-modal">
+        <div class="w3-modal-content w3-animate-top w3-card-4">
+            <header class="w3-container w3-teal">
+                <span onclick="document.getElementById('id02').style.display='none'"
+                class="w3-button w3-display-topright">&times;</span>
+                <h2>Deleting staff ..</h2>
+            </header>
+            <div class="w3-container">
+                <center><br>
+                    <form action="http://192.168.43.140:6060/delete_staff" method="POST">
+                        <label for="uname"><b>Key Number</label><br>
+                        <input required type="text" placeholder="key to delete" autocomplete="off" name="key" class="form_input" required>
+                        <label>Password</label>
+                        <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                        <button type="submit" class="submit-btn" > Delete</button><br>
+                    </form><br>
+                    <button type="button" class="close-btn" onclick="document.getElementById('id02').style.display='none'">Cancel</button>
+                </center>
+            </div>
+        </div>
+    </div>
+    </div></div>
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <br>
+    <center><button class="menu_btns fontstyles" onclick="Show_add_menu_panel_div ()">Add :: Menu</button></center>
+    <div id="add-menu-panel-div"><br>
+
+        <center><button class="admin-btn fontstyles" onclick="Show_add_chips_div_id ()">Chips</button></center>
+        <div id="add-chips-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_chips_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+            </center>
+        </div><br>
+
+        <center><button class="admin-btn fontstyles" onclick="Show_add_piloa_div_id ()">Piloa</button></center>
+        <div id="add-piloa-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_piloa_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn">Submit</button>
+            </form>
+            </center>
+        </div><br>
+
+        <center><button class="admin-btn fontstyles" onclick="Show_add_food_div_id ()"> Food</button></center>
+        <div id="add-food-div-id">
+            <center><br>
+            <form class="order-form" enctype="multipart/form-data" method="POST" action="http://192.168.43.140:6060/create_food_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file" autocomplete="off"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn">Submit</button><br><br>
+            </form>
+            </center>
+        </div><br>
+
+        <center><button class="admin-btn fontstyles" onclick="Show_add_drinks_soft_div_id ()">Soft: D</button></center>
+        <div id="add-drinks-soft-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/drinks_soft_menu_create">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_drinks_fresh_div_id ()">Fresh: D</button></center>
+        <div id="add-drinks-fresh-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_drinks_fresh_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_salads_div_id ()"> Salads</button></center>
+        <div id="add-salads-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_salads_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_chicken_div_id ()"> Chicken</button></center>
+        <div id="add-chicken-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_chicken_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_luwombo_div_id ()">Luwombo</button></center>
+        <div id="add-luwombo-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_luwombo_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_localdishe_div_id ()"> L:Dishe</button></center>
+        <div id="add-localdishe-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_localdishe_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_breakfast_other_div_id ()"> BF: Other</button></center>
+        <div id="add-breakfast-other-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_breakfast_other_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_breakfast_egg_div_id ()"> BF: Egg</button></center>
+        <div id="add-breakfast-egg-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_breakfast_egg_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_breakfast_teas_div_id ()"> BF: Teas</button></center>
+        <div id="add-breakfast-teas-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_breakfast_teas_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_beverages_div_id ()"> Beverages</button></center>
+        <div id="add-beverages-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_beverages_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_goatmeat_div_id ()"> Goat: M</button></center>
+        <div id="add-goatmeat-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_goatmeat_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div><br>
+        <center><button class="admin-btn fontstyles" onclick="Show_add_beefliver_div_id ()"> Beef Liver</button></center>
+        <div id="add-beefliver-div-id">
+            <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_beefliver_menu">
+                <label>Name</label>
+                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+                <label>Price</label>
+                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+                <label>Picture</label><br>
+                <input required  type="file" name="file"><br><br>
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<br>
+<center><button  class="menu_btns fontstyles" onclick="Show_edit_menu_panel_div ()">Edit :: Prices</button></center>
+<div id="edit-menu-panel-div"><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_chips_div_id ()">Chips</button></center>
+    <div id="edit-chips-div-id"><br>
+    <center><button onclick="Fetch_All_Avenue_Edits ('edit_chips_menu_endpoint','chips-tbody','chips-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button> </center>
+    <div id="chips-tbody-div">
+        <table class=" w3-bordered user-scrolling-table-admin">
+            <center><tbody id="chips-tbody"></tbody></center>
+        </table>
+    </div>
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_chips_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <!-- <label>Name</label>
+            <input required class="form_input" name="name" autocomplete="off" type="text"><br> -->
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        </center>
+    </div><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_piloa_div_id ()">Piloa</button></center>
+    <div id="edit-piloa-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_piloa_menu_endpoint','piloa-tbody','piloa-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="piloa-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="piloa-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_piloa_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Name</label>
+            <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        </center>
+    </div><br>
+
+    <!-- <center><button class="admin-btn fontstyles" onclick="Show_edit_food_div_id ()"> Food</button></center>
+    <div id="edit-food-div-id">
+        <button onclick="Fetch_All_Food_Edits('edit_food_menu_endpoint','food-tbody','food-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button>
+        <div id="food-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="food-tbody"></tbody></center>
+            </table>
+        </div>
+        <center><br>
+        <form class="order-form" enctype="multipart/form-data" method="POST" action="http://192.168.43.140:6060/update_food_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Name</label>
+            <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button><br><br>
+        </form>
+        </center>
+    </div><br> -->
+
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_drinks_soft_div_id ()"> Soft: D</button></center>
+    <div id="edit-drinks-soft-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_softdrink_menu_endpoint','softdrink-tbody','softdrink-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="softdrink-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="softdrink-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_softdrink_menu_">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_drinks_fresh_div_id ()">Fresh: D</button></center>
+    <div id="edit-drinks-fresh-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_freshdrink_menu_endpoint','freshdrink-tbody','freshdrink-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="freshdrink-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="freshdrink-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_freshdrink_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_salads_div_id ()"> Salads</button></center>
+    <div id="edit-salads-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_salads_menu_endpoint','salads-tbody','salads-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="salads-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="salads-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_salads_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_chicken_div_id ()"> Chicken</button></center>
+    <div id="edit-chicken-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_chicken_menu_endpoint','chicken-tbody','chicken-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="chicken-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="chicken-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_chicken_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_luwombo_div_id ()">Luwombo</button></center>
+    <div id="edit-luwombo-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_luwombo_menu_endpoint','luwombo-tbody','luwombo-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="luwombo-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="luwombo-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_luwombo_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_localdishe_div_id ()"> L:Dishe</button></center>
+    <div id="edit-localdishe-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_localdishe_menu_endpoint','localdishe-tbody','localdishe-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="localdishe-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="localdishe-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_localdishe_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_breakfast_other_div_id ()"> BF: Other</button></center>
+    <div id="edit-breakfast-other-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_bf_other_menu_endpoint','bf-other-tbody','bf-other-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="bf-other-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="bf-other-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_breakfast_other_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_breakfast_egg_div_id ()"> BF: Egg</button></center>
+    <div id="edit-breakfast-egg-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_bf_egg_menu_endpoint','bf-egg-tbody','bf-egg-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="bf-egg-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="bf-egg-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_breakfast_egg_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_breakfast_teas_div_id ()"> BF: Teas</button></center>
+    <div id="edit-breakfast-teas-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_bf_teas_menu_endpoint','bf-teas-tbody','bf-teas-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button><center>
+        <div id="bf-teas-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="bf-teas-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_breakfast_teas_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_beverages_div_id ()"> Beverages</button></center>
+    <div id="edit-beverages-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_beverages_menu_endpoint','beverages-tbody','beverages-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="beverages-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="beverages-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_beverages_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_goatmeat_div_id ()"> Goat: M</button></center>
+    <div id="edit-goatmeat-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_goatmeat_menu_endpoint','goatmeat-tbody','goatmeat-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="goatmeat-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="goatmeat-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_goatmeat_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_edit_beefliver_div_id ()"> Beef Liver</button></center>
+    <div id="edit-beefliver-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits('edit_beefliver_menu_endpoint','beefliver-tbody','beefliver-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="beefliver-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="beefliver-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/update_beefliver_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" autocomplete="off" type="text"><br>
+
+            <label>Price</label>
+            <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div>
+</div>
+</div>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<br>
+<center><button class="menu_btns fontstyles" onclick="Show_delete_menu_panel_div ()">Delete :: Menu</button></center>
+<div id="delete-menu-panel-div"><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_chips_div_id ()">Chips</button></center>
+    <div id="delete-chips-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_chips_menu_endpoint','chips-delete-tbody','chips-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="chips-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="chips-delete-tbody"></tbody></center>
+            </table>
+        </div>
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_chips_menu">
+            <label>Key</label>
+            <input required class="form_input" placeholder="key to delete" name="key" autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        </center>
+    </div><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_piloa_div_id ()">Piloa</button></center>
+    <div id="delete-piloa-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_piloa_menu_endpoint','piloa-delete-tbody','piloa-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="piloa-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="piloa-delete-tbody"></tbody></center>
+            </table>
+        </div>
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_piloa_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        </center>
+    </div><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_food_div_id ()"> Food</button></center>
+    <div id="delete-food-div-id"><br>
+        <center><button onclick="Fetch_All_Food_Edits ('edit_food_menu_endpoint','food-delete-tbody','food-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="food-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="food-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" enctype="multipart/form-data" method="POST" action="http://192.168.43.140:6060/delete_food_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn">Submit</button><br><br>
+        </form>
+        </center>
+    </div><br>
+
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_drinks_soft_div_id ()">Soft: D</button></center>
+    <div id="delete-drinks-soft-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_softdrink_menu_endpoint','softdrink-delete-tbody','softdrink-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="softdrink-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="softdrink-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_softdrink_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_drinks_fresh_div_id ()"> Fresh: D</button></center>
+    <div id="delete-drinks-fresh-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_freshdrink_menu_endpoint','freshdrink-delete-tbody','freshdrink-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="freshdrink-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="freshdrink-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_freshdrink_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_salads_div_id ()"> Salads</button></center>
+    <div id="delete-salads-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_salads_menu_endpoint','salads-delete-tbody','salads-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="salads-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="salads-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_salads_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_chicken_div_id ()"> Chicken</button></center>
+    <div id="delete-chicken-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_chicken_menu_endpoint','chicken-delete-tbody','chicken-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="chicken-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="chicken-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_chicken_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_luwombo_div_id ()">Luwombo</button></center>
+    <div id="delete-luwombo-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_luwombo_menu_endpoint','luwombo-delete-tbody','luwombo-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button><center>
+        <div id="luwombo-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="luwombo-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_luwombo_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_localdishe_div_id ()"> L: Dishe</button></center>
+    <div id="delete-localdishe-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_localdishe_menu_endpoint','localdishe-delete-tbody','localdishe-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="localdishe-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="localdishe-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_localdishe_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_breakfast_other_div_id ()"> BF: Other</button></center>
+    <div id="delete-breakfast-other-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_bf_other_menu_endpoint','bf-other-delete-tbody','bf-other-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="bf-other-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="bf-other-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_breakfast_other_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_breakfast_egg_div_id ()"> BF: Egg</button></center>
+    <div id="delete-breakfast-egg-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_bf_egg_menu_endpoint','bf-egg-delete-tbody','bf-egg-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button><center>
+        <div id="bf-egg-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="bf-egg-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_breakfast_egg_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_breakfast_teas_div_id ()"> BF: Teas</button></center>
+    <div id="delete-breakfast-teas-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_bf_teas_menu_endpoint','bf-teas-delete-tbody','bf-teas-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="bf-teas-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="bf-teas-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_breakfast_teas_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_beverages_div_id ()"> Beverages</button></center>
+    <div id="delete-beverages-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_beverages_menu_endpoint','beverages-delete-tbody','beverages-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="beverages-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="beverages-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_beverages_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_goatmeat_div_id ()"> Goat: M</button></center>
+    <div id="delete-goatmeat-div-id"><br>
+        <center><button onclick="Fetch_All_Avenue_Edits ('edit_goatmeat_menu_endpoint','goatmeat-delete-tbody','goatmeat-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="goatmeat-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="goatmeat-delete-tbody"></tbody></center>
+            </table>
+        </div>
+
+        <center><br>
+        <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_goatmeat_menu">
+            <label>Key</label>
+            <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+            <label>Password</label>
+            <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+            <button type="submit" class="submit-btn" >Submit</button>
+        </form>
+        </center>
+    </div><br>
+    <center><button class="admin-btn fontstyles" onclick="Show_delete_beefliver_div_id ()"> Beef Liver</button></center>
+    <div id="delete-beefliver-div-id"><br>
+        </center><button onclick="Fetch_All_Avenue_Edits ('edit_beefliver_menu_endpoint','beefliver-delete-tbody','beefliver-delete-tbody-div')" class="agency-show-btn entries_page_fonts"  >Show</button></center>
+        <div id="beefliver-delete-tbody-div">
+            <table class=" w3-bordered user-scrolling-table-admin">
+                <center><tbody id="beefliver-delete-tbody"></tbody></center>
+            </table>
+        </div
+        </center>
+        <center><br>
+            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/delete_beefliver_menu">
+                <label>Key</label>
+                <input required class="form_input" name="key" placeholder="Key to delete"  autocomplete="off" type="text"><br>
+
+                <label>Password</label>
+                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+
+                <button type="submit" class="submit-btn" >Submit</button>
+            </form>
+            </center>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<center>
+<button class="back-btn" onclick="javascript:history.go(-1)"><< Back</button><br><br>
+</center>
+</div>
+</body>
+</html>
