@@ -3,6 +3,7 @@
 <head>
 <title>Admin Edits </title>
 <meta charset="utf-8">
+<script src="static/js/others/jquery.min.js" ></script>
 <script src="static/js/others/adminedits.js" ></script>
 <script src="static/js/others/main.js" ></script>
 <link rel="stylesheet" type="text/css" href="static/css/main.css" >
@@ -16,11 +17,12 @@
             <div id="our-avenues-menu-label-div">
                 <label class="our-avenues-label" onclick="Load_index ()" > Home</label>
             </div><br>
-                <div id="our-avenues-menu-label-div">
+                <!-- <div id="our-avenues-menu-label-div">
                     <label class="our-avenues-label" > Our Avenues</label>
-                </div><br>
+                </div><br> -->
                 <div id="menu-items-div">
                     <center>
+                        <a><label class="our-avenues-label" onclick="Load_index ()" >Dashboard</label></a>
                         <a><label onclick="Load_food_view ()">Food</label></a>
                         <a><label onclick="Load_chips_view ()">Chips</label></a>
                         <a><label onclick="Load_piloa_view ()">Piloa</label></a>
@@ -41,7 +43,7 @@
                 </div><br>
         </div>
         <div id="NaviDiv">
-            <label class="kone-menu-label" onclick="openMenus()">&#9776;</label>
+            <label class="open-side-navi-label" onclick="openMenus()">&#9776;</label>
             <label class="kone-label">"Taste the difference"</label>
         </div>
 <script>
@@ -51,6 +53,16 @@ function closeNavi (){document.getElementById("Navigetion").style.width = "0"}
 
 </div> <!-- main-header-->
 <div id="main-body" > <!-- Begin main-body div -->
+    <center>
+		<div id="alert-box-display-area"></div>
+			<div id="alert-box">
+				<div>
+					<div id="alert-box-header"></div>
+					<div id="alert-box-body"></div>
+					<div id="alert-box-footer"></div>
+				</div>
+			</div>
+	</center>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -141,20 +153,26 @@ function closeNavi (){document.getElementById("Navigetion").style.width = "0"}
         <center><button class="admin-btn fontstyles" onclick="Show_add_chips_div_id ()">Chips</button></center>
         <div id="add-chips-div-id">
             <center><br>
-            <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_chips_menu">
+            <!-- <form class="order-form" method="POST" enctype="multipart/form-data" action="http://192.168.43.140:6060/create_chips_menu"> -->
+            <!-- <form class="order-form" method="POST" enctype="multipart/form-data"> -->
+                <label>Menu Type</label>
+                <input required class="form_input" id="itemname" autocomplete="off" type="text"><br>
+
                 <label>Name</label>
-                <input required class="form_input" name="name" autocomplete="off" type="text"><br>
+                <input required class="form_input" id="name" autocomplete="off" type="text"><br>
 
                 <label>Price</label>
-                <input required class="form_input" name="price" autocomplete="off" type="text"><br>
+                <input required class="form_input" id="price" autocomplete="off" type="text"><br>
 
                 <label>Picture</label><br>
-                <input required  type="file" name="file"><br><br>
+                <input required  type="file" id="file"><br><br>
                 <label>Password</label>
-                <input required class="form_input" placeholder="Password" name="pwd" autocomplete="off" type="password"><br>
+                <input required class="form_input" placeholder="Password" id="pwd" autocomplete="off" type="password"><br>
 
-                <button type="submit" class="submit-btn">Submit</button>
-            </form>
+                <button onclick="SubmiteData ()" id="upload" class="submit-btn">Submit</button>
+                <!-- <button id="but_upload" class="submit-btn">Submit</button> -->
+            <!-- </form> -->
+
             </center>
         </div><br>
 

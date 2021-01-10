@@ -1,6 +1,6 @@
 
-var edit_url = "http://192.168.43.140:6060/";
-// var edit_url = "http://172.105.158.108:6060/";
+// var edit_url = "http://192.168.43.140:6060/";
+var edit_url = "http://127.0.0.1:6060/";
 
 
 var seconds = 1000;
@@ -1119,3 +1119,48 @@ function Show_delete_beefliver_div_id ()
     document.getElementById("delete-food-div-id").style.display = "none";
     document.getElementById("delete-beefliver-div-id").style.display = "block";
 }
+
+
+function SubmiteData ()
+{
+    file:$('#file').val()
+
+    console.log(file)
+
+    $.ajax({
+
+        data:
+            {
+                // itemname:$('#itemname').val(),
+                // name:$('#name').val(),
+                // price:$('#price').val(),
+                // file:$('#file')[0],
+                // pwd:$('#pwd').val(),
+                
+            },
+            url : src_url + 'create_chips_menu',
+            // contentType : 'application/json',
+            enctype : 'multipart/form-data',
+            type : 'POST'
+    });
+}
+
+
+// function SubmiteData ()
+// {
+//     $.ajax({
+
+//         data:
+//             {
+//                 itemname:$('#itemname').val(),
+//                 name:$('#name').val(),
+//                 price:$('#price').val(),
+//                 // file:$('#file').[0],
+//                 pwd:$('#pwd').val(),
+//             },
+//             url : src_url + 'create_chips_menu',
+//             // enctype : 'multipart/form-data',
+//             // contentType : false, // 'multipart/form-data',
+//             type : 'POST'
+//     });
+// }
